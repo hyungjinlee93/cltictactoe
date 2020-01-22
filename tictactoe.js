@@ -40,17 +40,58 @@ let takeTurn = () => {
             console.log(spaces[location]);
             spaces[location] = turn;
             console.log(spaces[location]);
+            console.log(board());
+            winProcessor();
             if(turn === 'x') {
                 turn = 'o';
             } else {
                 turn = 'x';
             }
-            console.log(board());
             takeTurn();
         }
     });
 };
 takeTurn();
+
+let winProcessor = () => {
+    if (spaces[1] === spaces[2] && spaces[2] === spaces[3] && spaces[1] === spaces[3]) {
+        console.log(turn, ' wins!');
+        rl.close();
+    } else if (spaces[4] === spaces[5] && spaces[5] === spaces[6] && spaces[4] === spaces[6]) {
+        console.log(turn, ' wins!');
+        rl.close();
+    } else if (spaces[7] === spaces[8] && spaces[8] === spaces[9] && spaces[7] === spaces[9]) {
+        console.log(turn, ' wins!');
+        rl.close();
+    } else if (spaces[1] === spaces[4] && spaces[4] === spaces[7] && spaces[1] === spaces[7]) {
+        console.log(turn, ' wins!');
+        rl.close();
+    } else if (spaces[2] === spaces[5] && spaces[5] === spaces[8] && spaces[2] === spaces[8]) {
+        console.log(turn, ' wins!');
+        rl.close();
+    } else if (spaces[3] === spaces[6] && spaces[6] === spaces[9] && spaces[3] === spaces[9]) {
+        console.log(turn, ' wins!');
+        rl.close();
+    } else if (spaces[1] === spaces[5] && spaces[5] === spaces[9] && spaces[9] === spaces[1]) {
+        console.log(turn, ' wins!');
+        rl.close();
+    } else if (spaces[3] === spaces[5] && spaces[5] === spaces[7] && spaces[3] === spaces[7]) {
+        console.log(turn, ' wins!');
+        rl.close();
+    } else {
+        let end = true;
+        for(let keys in spaces) {
+            if(typeof spaces[keys] === 'number') {
+                end = false;
+                break;
+            }
+        }
+        if (end) {
+            console.log('No more moves!');
+            rl.close();
+        }
+    }
+}
 
 rl.on("close", function() {
     console.log("\nBYE BYE !!!");
